@@ -16,11 +16,12 @@ declare -a tracked_file_paths=(
 )
 
 REPO_ROOT=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+DOTFILES_DIRNAME="dotfiles"
 
 for rfp in "${tracked_file_paths[@]}"
 do
     srcfp="$HOME/$rfp"
-    distfp="$REPO_ROOT/config_files/$rfp"
+    distfp="$REPO_ROOT/DOTFILES_DIRNAME/$rfp"
 
     if [ -e $srcfp ]; then
         mkdir -p $(dirname "${distfp}")
