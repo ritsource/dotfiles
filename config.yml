@@ -1,0 +1,11 @@
+dotfiles:
+  - .zshrc
+  - .bashrc
+  - .bash_profile
+  - .profile
+  - .tmux.conf
+  - .config/nvim/init.vim
+  - .config/nvim/coc-settings.json
+  - .config/nvim/extra.vim
+  - .config/alacritty/alacritty.yml
+uname: Darwin
