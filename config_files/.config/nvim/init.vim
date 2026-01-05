@@ -453,7 +453,7 @@ Plug 'sickill/vim-pasta'
     let NERDTreeShowHidden=1
     " let NERDTreeDirArrowExpandable = '▷'
     " let NERDTreeDirArrowCollapsible = '▼'
-    let g:NERDTreeIndicatorMapCustom = {
+    let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "•",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -647,7 +647,9 @@ Plug 'sickill/vim-pasta'
     Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
     " nunjucks support
-    Plug 'niftylettuce/vim-jinja', { 'for': 'njk' }
+    "  Plug 'niftylettuce/vim-jinja', { 'for': 'njk' }
+    " nunjucks support
+    Plug 'lepture/vim-jinja', { 'for': 'njk' }
 " }}}
 
 " JavaScript {{{

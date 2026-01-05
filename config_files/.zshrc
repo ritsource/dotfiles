@@ -17,6 +17,9 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+# homebrew
+export PATH=/opt/homebrew/bin:$PATH
+
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
@@ -47,9 +50,9 @@ bindkey '^l' forward-char
 tabs -2
 #
 
-# path, this was already there, so not messing up n
-export PATH="$PATH:`pwd`/flutter/bin:/usr/local/Cellar/python/3.7.7/bin:/Users/P.rit/Library/Python/2.7/bin:~/.custom/scripts/bin"
-#
+# # path, this was already there, so not messing up n
+# export PATH="$PATH:`pwd`/flutter/bin:/usr/local/Cellar/python/3.7.7/bin:/Users/P.rit/Library/Python/2.7/bin:~/.custom/scripts/bin"
+# #
 
 # exporting path for custom scripts
 # to find out more ~/.custom/scripts
@@ -70,18 +73,23 @@ export PATH=$PATH:~/.custom/scripts/bin
 
 
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/usr/local/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 # export PATH=$PATH:/usr/local/go/bin
 
-# exporting nvim as default text editor
-# source https://unix.stackexchange.com/questions/501862/how-can-i-set-the-default-editor-as-nano-on-my-mac
-#
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-#
+# # exporting nvim as default text editor
+# # source https://unix.stackexchange.com/questions/501862/how-can-i-set-the-default-editor-as-nano-on-my-mac
+# #
+# export EDITOR="nvim"
+# export VISUAL="$EDITOR"
+# #
+
+alias c="cursor"
+alias c.="cursor ."
+alias c..="cursor .."
+alias c....="cursor ../.."
 
 # useful aliases
 #
@@ -118,8 +126,8 @@ alias ripgrep="rg"
 #
 alias vi="nvim"
 alias vim="nvim"
-alias vi.="nvim ."
-alias .="nvim ."
+alias vi="nvim ."
+# alias .="nvim ."
 #
 
 # git alias, shortcuts for most
@@ -132,6 +140,7 @@ alias gitc="git commit"
 alias gitb="git branch"
 alias gitck="git checkout"
 alias gitbclip="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+alias gitpo="git push origin"
 #
 
 # alias for custom scripts
@@ -149,9 +158,14 @@ alias co_nfe="confedit"
 alias co_nf="confedit"
 #
 
+alias python="python3"
+alias py3="python3"
+alias py2="python2"
+alias py="python3"
+
 # startup command
 # random number between 0 to 10, if 1 then print
-if [ 3 -gt $(python -S -c "import random; print random.randrange(0,10)") ]; then
+if [ 3 -gt $(python -S -c "from random import randrange; print(randrange(10))") ]; then
     fortune | cowsay -f sodomized | lolcat -a -d 1
 fi
 #
@@ -178,3 +192,15 @@ precmd() {
 #
 
 source ~/.bashrc
+
+export PATH="/Users/rit/.local/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export PATH="$PATH:~/development/flutter/bin"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by Windsurf
+export PATH="/Users/rit/.codeium/windsurf/bin:$PATH"
