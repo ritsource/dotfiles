@@ -275,7 +275,49 @@ require('lazy').setup({
     event = 'InsertEnter',
     -- Config is handled in lsp.lua after lazy loads
   },
-  { 'windwp/nvim-ts-autotag' },
+  {
+    'windwp/nvim-ts-autotag',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
+  -- ============================================================================
+  -- TREESITTER (Syntax Parsing & Folding)
+  -- ============================================================================
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      -- Safely require and configure Treesitter
+      local ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+      if not ok then
+        -- Plugin not installed yet, will be configured on next load
+        return
+      end
+      treesitter_configs.setup({
+        -- Install parsers synchronously (only applied to `ensure_installed`)
+        sync_install = false,
+        -- Automatically install missing parsers when entering buffer
+        auto_install = true,
+        -- List of parsers to ignore installing
+        ignore_install = {},
+        highlight = {
+          enable = true,
+          -- Disable if nvim-treesitter causes issues
+          disable = {},
+          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+          additional_vim_regex_highlighting = false,
+        },
+        indent = {
+          enable = true,
+        },
+        -- Enable Treesitter-based folding
+        -- This provides better semantic folding than indent-based folding
+        fold = {
+          enable = true,
+        },
+      })
+    end,
+  },
 
   -- ============================================================================
   -- SNIPPETS
