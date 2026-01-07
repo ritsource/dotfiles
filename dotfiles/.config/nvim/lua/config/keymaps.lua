@@ -170,6 +170,23 @@ map('n', '<leader>dX', '"_D', { desc = 'Delete to end of line without yanking' }
 map('v', '<leader>dx', '"_d', { desc = 'Delete selection without yanking' })
 
 -- ============================================================================
+-- CODE FOLDING
+-- ============================================================================
+-- Fold everything from root (foldlevel = 0)
+map('n', '<C-f><C-f>', function() vim.opt_local.foldlevel = 0 end, { desc = 'Fold everything', silent = true })
+
+-- Unfold everything (foldlevel = 99)
+map('n', '<C-f><C-u>', function() vim.opt_local.foldlevel = 99 end, { desc = 'Unfold everything', silent = true })
+
+-- Fold to specific levels (1-6)
+map('n', '<C-f>1', function() vim.opt_local.foldlevel = 1 end, { desc = 'Fold to level 1', silent = true })
+map('n', '<C-f>2', function() vim.opt_local.foldlevel = 2 end, { desc = 'Fold to level 2', silent = true })
+map('n', '<C-f>3', function() vim.opt_local.foldlevel = 3 end, { desc = 'Fold to level 3', silent = true })
+map('n', '<C-f>4', function() vim.opt_local.foldlevel = 4 end, { desc = 'Fold to level 4', silent = true })
+map('n', '<C-f>5', function() vim.opt_local.foldlevel = 5 end, { desc = 'Fold to level 5', silent = true })
+map('n', '<C-f>6', function() vim.opt_local.foldlevel = 6 end, { desc = 'Fold to level 6', silent = true })
+
+-- ============================================================================
 -- WILDMENU NAVIGATION
 -- ============================================================================
 -- Note: Removed wildmenu arrow key remappings as they interfere with command history

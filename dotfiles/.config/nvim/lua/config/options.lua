@@ -141,11 +141,21 @@ opt.expandtab = true -- Use spaces instead of tabs
 -- ============================================================================
 -- CODE FOLDING SETTINGS
 -- ============================================================================
-opt.foldmethod = 'indent' -- Fold based on indent
-opt.foldlevelstart = 99 -- Start with all folds open
+-- Enable folding globally
+opt.foldenable = true
+
+-- Start with all code unfolded
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+
+-- Preserve manual folds
+opt.foldcolumn = '1' -- Show fold column
 opt.foldnestmax = 10 -- Deepest fold is 10 levels
-opt.foldenable = false -- Don't fold by default
-opt.foldlevel = 1 -- Folding level when starting to edit
+
+-- Set folding method per-buffer (via autocmd in autocmds.lua)
+-- Treesitter folding is set per-buffer when file is opened
+-- Default to indent-based folding as fallback
+opt.foldmethod = 'indent'
 
 -- ============================================================================
 -- INVISIBLE CHARACTERS

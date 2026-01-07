@@ -35,6 +35,24 @@ autocmd('FileType', {
   end,
 })
 
+-- Set folding method per-buffer: prefer Treesitter, fallback to indent
+-- Treesitter provides better semantic folding based on AST
+autocmd({ 'BufReadPost', 'FileType' }, {
+  group = config_group,
+  callback = function()
+    -- Check if Treesitter folding function is available
+    if vim.fn.exists('*nvim_treesitter#foldexpr') == 1 then
+      vim.opt_local.foldmethod = 'expr'
+      vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+    else
+      -- Fallback to indent-based folding
+      vim.opt_local.foldmethod = 'indent'
+    end
+    -- Ensure foldlevel is set to 99 (unfolded) for new buffers
+    vim.opt_local.foldlevel = 99
+  end,
+})
+
 -- ============================================================================
 -- NERDTREE GROUP
 -- ============================================================================
