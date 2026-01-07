@@ -204,3 +204,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Added by Windsurf
 export PATH="/Users/rit/.codeium/windsurf/bin:$PATH"
+
+# opencode
+export PATH=/Users/rit/.opencode/bin:$PATH

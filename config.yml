@@ -4,8 +4,13 @@ dotfiles:
   - .bash_profile
   - .profile
   - .tmux.conf
-  - .config/nvim/init.vim
-  - .config/nvim/coc-settings.json
-  - .config/nvim/extra.vim
   - .config/alacritty/alacritty.yml
+  - .config/nvim/init.lua
+  - .config/nvim/lua/config/init.lua
+  - .config/nvim/lua/config/options.lua
+  - .config/nvim/lua/config/keymaps.lua
+  - .config/nvim/lua/config/autocmds.lua
+  - .config/nvim/lua/config/plugins.lua
+  - .config/nvim/lua/config/lsp.lua
+  - .config/nvim/lua/config/colorscheme.lua
 uname: Darwin
