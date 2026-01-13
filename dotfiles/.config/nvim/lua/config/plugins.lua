@@ -164,9 +164,18 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>e', ':Files<cr>', { desc = 'File finder', silent = true })
       -- Use <leader>ff for file finder to avoid conflict with <leader>f (formatting)
       vim.keymap.set('n', '<leader>ff', ':Files<cr>', { desc = 'File finder (case insensitive)', silent = true })
+      -- Ctrl+P and Command+P (⌘+P) to open fzf file finder
+      vim.keymap.set('n', '<C-p>', ':Files<cr>', { desc = 'Open fzf file finder (Ctrl+P)', silent = true })
+      vim.keymap.set('n', '<D-p>', ':Files<cr>', { desc = 'Open fzf file finder (Command+P)', silent = true })
     end,
   },
-  { 'kien/ctrlp.vim' },
+  {
+    'kien/ctrlp.vim',
+    config = function()
+      -- Disable ctrlp's default <C-p> mapping since we're using fzf instead
+      vim.g.ctrlp_map = ''
+    end,
+  },
 
   -- ============================================================================
   -- GIT INTEGRATION

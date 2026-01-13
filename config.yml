@@ -1,16 +1,18 @@
 dotfiles:
-  - .zshrc
-  - .bashrc
-  - .bash_profile
-  - .profile
-  - .tmux.conf
-  - .config/alacritty/alacritty.yml
-  - .config/nvim/init.lua
-  - .config/nvim/lua/config/init.lua
-  - .config/nvim/lua/config/options.lua
-  - .config/nvim/lua/config/keymaps.lua
-  - .config/nvim/lua/config/autocmds.lua
-  - .config/nvim/lua/config/plugins.lua
-  - .config/nvim/lua/config/lsp.lua
-  - .config/nvim/lua/config/colorscheme.lua
+    - .zshrc
+    - .bashrc
+    - .bash_profile
+    - .profile
+    - .tmux.conf
+    - .config/alacritty/alacritty.yml
+    - .config/nvim/init.lua
+    - .config/nvim/lua/config/init.lua
+    - .config/nvim/lua/config/options.lua
+    - .config/nvim/lua/config/keymaps.lua
+    - .config/nvim/lua/config/autocmds.lua
+    - .config/nvim/lua/config/plugins.lua
+    - .config/nvim/lua/config/lsp.lua
+    - .config/nvim/lua/config/colorscheme.lua
+    - .config/zed/keymap.json
+    - .config/zed/settings.json
 uname: Darwin

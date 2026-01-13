@@ -1,0 +1,97 @@
+[
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-cmd-f": "editor::Format"
+        }
+    },
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "cmd-shift-c": "project_panel::CollapseAllEntries"
+        }
+    },
+    {
+        "bindings": {
+            "cmd-b": "project_panel::ToggleHideHidden"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "cmd-r": "workspace::ToggleRightDock"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-0": "editor::FoldAll"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-f": "editor::ToggleFold"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-1": "editor::FoldAtLevel_1"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-2": "editor::FoldAtLevel_2"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-3": "editor::FoldAtLevel_3"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-4": "editor::FoldAtLevel_4"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-5": "editor::FoldAtLevel_5"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-6": "editor::FoldAtLevel_6"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-7": "editor::FoldAtLevel_7"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-8": "editor::FoldAtLevel_8"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-9": "editor::FoldAtLevel_9"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-u": "editor::UnfoldAll"
+        }
+    }
+]

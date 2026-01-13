@@ -1,0 +1,56 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+    "project_panel": {
+        "hide_hidden": false,
+        "dock": "right"
+    },
+    "assistant": {
+        "version": "2",
+        "dock": "left"
+    },
+    "tab_size": 4,
+    "ui_font_family": ".ZedSans",
+    "buffer_line_height": "comfortable",
+    "buffer_font_family": ".ZedMono",
+    "theme": "Catppuccin Latte",
+    "vim_mode": true,
+    "ui_font_size": 16.0,
+    "buffer_font_size": 13.0,
+    "autosave": "off",
+    "confirm_quit": true,
+    "copilot": {
+        "disabled_globs": [
+            ".env"
+        ]
+    },
+    "cursor_blink": true,
+    "formatter": "language_server",
+    "languages": {
+        "JavaScript": {
+            "external": {
+                "command": "prettier",
+                "arguments": [
+                    "--stdin-filepath",
+                    "{buffer_path}"
+                ]
+            }
+        },
+        "TypeScript": {
+            "code_actions_on_format": {
+                "source.organizeImports": true
+            }
+        },
+        "TSX": {
+            "code_actions_on_format": {
+                "source.organizeImports": true
+            }
+        }
+    },
+}

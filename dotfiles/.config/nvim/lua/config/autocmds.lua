@@ -37,15 +37,24 @@ autocmd('FileType', {
 
 -- Set folding method per-buffer: prefer Treesitter, fallback to indent
 -- Treesitter provides better semantic folding based on AST
+-- Note: When nvim-treesitter has fold.enable = true, it automatically sets up folding
+-- This autocmd ensures foldlevel is set and provides a fallback
 autocmd({ 'BufReadPost', 'FileType' }, {
   group = config_group,
   callback = function()
-    -- Check if Treesitter folding function is available
-    if vim.fn.exists('*nvim_treesitter#foldexpr') == 1 then
+    -- Check if Treesitter is available and can provide folding
+    local buf = vim.api.nvim_get_current_buf()
+    local has_parser = pcall(function()
+      return vim.treesitter.get_parser(buf) ~= nil
+    end)
+    
+    if has_parser then
+      -- Treesitter parser is available, use Treesitter folding
+      -- (nvim-treesitter config with fold.enable = true should handle this automatically)
       vim.opt_local.foldmethod = 'expr'
-      vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     else
-      -- Fallback to indent-based folding
+      -- Fallback to indent-based folding if Treesitter parser is not available
       vim.opt_local.foldmethod = 'indent'
     end
     -- Ensure foldlevel is set to 99 (unfolded) for new buffers
