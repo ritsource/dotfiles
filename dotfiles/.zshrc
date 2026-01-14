@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 
 # kaybindings for H,J,K,L navgation on terminal
 # source - https://unix.stackexchange.com/a/323279/359073
-# 
+#
 # mapping is something like
 # ctrl + k => up-arrow
 # ctrl + j => down-arrow
@@ -56,7 +56,7 @@ tabs -2
 
 # exporting path for custom scripts
 # to find out more ~/.custom/scripts
-# 
+#
 export PATH=$PATH:~/.custom/scripts/bin
 #
 
@@ -69,7 +69,7 @@ export PATH=$PATH:~/.custom/scripts/bin
 #
 # export PATH=$PATH:$GOPATH/bin
 ## export PATH=$PATH:$(go env GOPATH)/bin
-# 
+#
 
 
 export GOPATH=$HOME/go
@@ -91,6 +91,11 @@ alias c.="cursor ."
 alias c..="cursor .."
 alias c....="cursor ../.."
 
+alias z="zed"
+alias z.="zed ."
+alias z..="zed .."
+alias z....="zed ../.."
+
 # useful aliases
 #
 alias hist="history"
@@ -105,7 +110,7 @@ alias refresh="source ~/.bash_profile; source ~/.zshrc; source ~/.profile"
 
 # shortcut aliases
 #
-alias rr="refresh" 
+alias rr="refresh"
 alias cc="clear"
 alias wh="which"
 alias la="ls -a"

@@ -6,12 +6,6 @@
         }
     },
     {
-        "context": "ProjectPanel",
-        "bindings": {
-            "cmd-shift-c": "project_panel::CollapseAllEntries"
-        }
-    },
-    {
         "bindings": {
             "cmd-b": "project_panel::ToggleHideHidden"
         }
@@ -19,7 +13,13 @@
     {
         "context": "Workspace",
         "bindings": {
-            "cmd-r": "workspace::ToggleRightDock"
+            "cmd-shift-r": "workspace::ToggleRightDock"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "cmd-shift-e": "workspace::ToggleLeftDock"
         }
     },
     {
@@ -92,6 +92,75 @@
         "context": "Editor",
         "bindings": {
             "ctrl-f ctrl-u": "editor::UnfoldAll"
+        }
+    },
+    {
+        "bindings": {
+            "cmd-shift-c cmd-shift-b": "collab_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "cmd-shift-c": "project_panel::FoldDirectory"
+        }
+    },
+    {
+        "bindings": {
+            "cmd-shift-c cmd-shift-u": "project_panel::UnfoldDirectory"
+        }
+    },
+    {
+        "context": "(Workspace && debugger_running)",
+        "bindings": {
+            "ctrl-i ctrl-i": "debugger::StepInto"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-j ctrl-j": "debugger::StepOver"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-o ctrl-o": "debugger::StepOut"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-b ctrl-b": "debugger::StepBack"
+        }
+    },
+    {
+        "context": "(Workspace && debugger_stopped)",
+        "bindings": {
+            "ctrl-c ctrl-c": "debugger::Continue"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-r ctrl-r": "debugger::Restart"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-d ctrl-e": "debugger::Stop"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-d ctrl-d": "debugger::Detach"
+        }
+    },
+    {
+        "context": "!ContextEditor > (Editor && mode == full)",
+        "bindings": {
+            "ctrl-k": "assistant::InlineAssist"
+        }
+    },
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-k": "assistant::InlineAssist"
         }
     }
 ]

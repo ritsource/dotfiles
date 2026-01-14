@@ -18,29 +18,21 @@ fi
 DOTFILES_DIR="$PROJECT_ROOT/dotfiles"
 CONFIG_FILE="$PROJECT_ROOT/config.yml"
 
-# Function for rich printing
-print_success() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${GREEN}${BOLD}$1${NC}"
-    fi
-}
-
-print_info() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${CYAN}${BOLD}$1${NC}"
-    fi
+# Function for clean CLI output
+print_installed() {
+    echo -e "  ${GREEN}${BOLD}Installed${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}${BOLD}ERROR: $1${NC}" >&2
+    echo -e "${RED}${BOLD}ERROR:${NC} $1" >&2
 }
 
 print_warning() {
-    echo -e "${YELLOW}${BOLD}WARNING: $1${NC}"
+    echo -e "${YELLOW}${BOLD}WARNING:${NC} $1"
+}
+
+print_info() {
+    echo -e "  $1"
 }
 
 # Check uname from config.yml against system uname
@@ -76,13 +68,13 @@ while IFS= read -r line; do
         in_dotfiles_section=true
         continue
     fi
-    
+
     # Check if we've hit another top-level key (end of dotfiles section)
     if [[ "$line" =~ ^[a-zA-Z_]+: ]] && [[ ! "$line" =~ ^[[:space:]] ]]; then
         in_dotfiles_section=false
         continue
     fi
-    
+
     # If we're in the dotfiles section, extract list items
     if [ "$in_dotfiles_section" = true ]; then
         # Match lines like "  - .zshrc" or "  - .config/nvim/init.vim"
@@ -101,7 +93,7 @@ if [ ${#dotfiles[@]} -eq 0 ]; then
     exit 1
 fi
 
-print_info "Installing dotfiles from $DOTFILES_DIR to home directory"
+echo "Installing dotfiles from $DOTFILES_DIR to home directory"
 echo ""
 
 installed_count=0
@@ -112,13 +104,13 @@ for dotfile_path in "${dotfiles[@]}"; do
     source_file="$DOTFILES_DIR/$dotfile_path"
     # Destination in home directory
     dest_file="$HOME/$dotfile_path"
-    
+
     # Check if source file exists
     if [ ! -f "$source_file" ]; then
         print_warning "Source file not found: $source_file (skipping)"
         continue
     fi
-    
+
     # Create destination directory if needed
     dest_dir="$(dirname "$dest_file")"
     if [ "$dest_dir" != "$HOME" ] && [ ! -d "$dest_dir" ]; then
@@ -128,7 +120,7 @@ for dotfile_path in "${dotfiles[@]}"; do
             continue
         fi
     fi
-    
+
     # Check if destination already exists
     if [ -f "$dest_file" ]; then
         # Check if files are different
@@ -140,10 +132,10 @@ for dotfile_path in "${dotfiles[@]}"; do
             fi
         fi
     fi
-    
+
     # Copy the file
     if cp "$source_file" "$dest_file" 2>/dev/null; then
-        print_success "✓ Installed: $dotfile_path"
+        print_installed "$dotfile_path"
         ((installed_count++))
     else
         print_error "Failed to install $dotfile_path"
@@ -153,10 +145,9 @@ done
 
 echo ""
 if [ $installed_count -gt 0 ]; then
-    print_success "Successfully installed $installed_count dotfile(s)"
+    echo -e "${GREEN}${BOLD}✓${NC} Successfully installed $installed_count dotfile(s)"
 fi
 if [ $failed_count -gt 0 ]; then
     print_error "Failed to install $failed_count dotfile(s)"
     exit 1
 fi
-

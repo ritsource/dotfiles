@@ -19,29 +19,25 @@ SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 BIN_DIR="$HOME/.custom/scripts/bin"
 CONFIG_FILE="$PROJECT_ROOT/config.yml"
 
-# Function for rich printing
-print_success() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${GREEN}${BOLD}$1${NC}"
-    fi
+# Function for clean CLI output
+print_updated() {
+    echo -e "  ${GREEN}${BOLD}Updated${NC} $1"
 }
 
-print_info() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${CYAN}${BOLD}$1${NC}"
-    fi
+print_created() {
+    echo -e "  ${GREEN}${BOLD}Created${NC} $1"
+}
+
+print_unchanged() {
+    echo -e "  ○ $1"
 }
 
 print_error() {
-    echo -e "${RED}${BOLD}ERROR: $1${NC}" >&2
+    echo -e "${RED}${BOLD}ERROR:${NC} $1" >&2
 }
 
 print_warning() {
-    echo -e "${YELLOW}${BOLD}WARNING: $1${NC}"
+    echo -e "${YELLOW}${BOLD}WARNING:${NC} $1"
 }
 
 # Check uname from config.yml against system uname
@@ -66,7 +62,7 @@ if [ ! -d "$SCRIPTS_DIR" ]; then
     exit 1
 fi
 
-print_info "Backing up scripts from $BIN_DIR to $SCRIPTS_DIR"
+echo "Backing up scripts from $BIN_DIR to $SCRIPTS_DIR"
 echo ""
 
 backed_up_count=0
@@ -81,14 +77,14 @@ while IFS= read -r -d '' bin_file; do
     # Add .sh extension for the source file
     script_fn="${binfn}.sh"
     script_fp="$SCRIPTS_DIR/$script_fn"
-    
+
     # Check if file already exists in scripts directory
     if [ -f "$script_fp" ]; then
         # Compare files to see if they're different
         if ! cmp -s "$bin_file" "$script_fp"; then
             # Files are different, update it
             if cp "$bin_file" "$script_fp" 2>/dev/null; then
-                print_success "↻ Updated: $script_fn"
+                print_updated "$script_fn"
                 updated_files+=("$script_fn")
                 ((updated_count++))
                 ((backed_up_count++))
@@ -97,13 +93,13 @@ while IFS= read -r -d '' bin_file; do
                 ((failed_count++))
             fi
         else
-            print_info "○ Unchanged: $script_fn"
+            print_unchanged "$script_fn"
             ((backed_up_count++))
         fi
     else
         # File doesn't exist, create it
         if cp "$bin_file" "$script_fp" 2>/dev/null; then
-            print_success "✓ Created: $script_fn"
+            print_created "$script_fn"
             updated_files+=("$script_fn")
             ((backed_up_count++))
         else
@@ -114,18 +110,10 @@ while IFS= read -r -d '' bin_file; do
 done < <(find "$BIN_DIR" -maxdepth 1 -type f -executable -print0 2>/dev/null)
 
 echo ""
-if [ ${#updated_files[@]} -gt 0 ]; then
-    print_info "Files updated in $SCRIPTS_DIR:"
-    for file in "${updated_files[@]}"; do
-        echo -e "  ${CYAN}  • $file${NC}"
-    done
-    echo ""
-fi
-
 if [ $backed_up_count -gt 0 ]; then
-    print_success "Successfully backed up $backed_up_count script(s)"
+    echo -e "${GREEN}${BOLD}✓${NC} Successfully backed up $backed_up_count script(s)"
     if [ $updated_count -gt 0 ]; then
-        print_info "  ($updated_count file(s) were updated)"
+        echo "  ($updated_count updated)"
     fi
 fi
 if [ $failed_count -gt 0 ]; then
@@ -136,4 +124,3 @@ fi
 if [ $backed_up_count -eq 0 ] && [ $failed_count -eq 0 ]; then
     print_warning "No scripts found in $BIN_DIR"
 fi
-

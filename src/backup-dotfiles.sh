@@ -18,29 +18,25 @@ fi
 DOTFILES_DIR="$PROJECT_ROOT/dotfiles"
 CONFIG_FILE="$PROJECT_ROOT/config.yml"
 
-# Function for rich printing
-print_success() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${GREEN}${BOLD}$1${NC}"
-    fi
+# Function for clean CLI output
+print_updated() {
+    echo -e "  ${GREEN}${BOLD}Updated${NC} $1"
 }
 
-print_info() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${CYAN}${BOLD}$1${NC}"
-    fi
+print_created() {
+    echo -e "  ${GREEN}${BOLD}Created${NC} $1"
+}
+
+print_unchanged() {
+    echo -e "  ○ $1"
 }
 
 print_error() {
-    echo -e "${RED}${BOLD}ERROR: $1${NC}" >&2
+    echo -e "${RED}${BOLD}ERROR:${NC} $1" >&2
 }
 
 print_warning() {
-    echo -e "${YELLOW}${BOLD}WARNING: $1${NC}"
+    echo -e "${YELLOW}${BOLD}WARNING:${NC} $1"
 }
 
 # Check uname from config.yml against system uname
@@ -76,13 +72,13 @@ while IFS= read -r line; do
         in_dotfiles_section=true
         continue
     fi
-    
+
     # Check if we've hit another top-level key (end of dotfiles section)
     if [[ "$line" =~ ^[a-zA-Z_]+: ]] && [[ ! "$line" =~ ^[[:space:]] ]]; then
         in_dotfiles_section=false
         continue
     fi
-    
+
     # If we're in the dotfiles section, extract list items
     if [ "$in_dotfiles_section" = true ]; then
         # Match lines like "  - .zshrc" or "  - .config/nvim/init.vim"
@@ -101,7 +97,7 @@ if [ ${#dotfiles[@]} -eq 0 ]; then
     exit 1
 fi
 
-print_info "Backing up dotfiles from home directory to $DOTFILES_DIR"
+echo "Backing up dotfiles from home directory to $DOTFILES_DIR"
 echo ""
 
 backed_up_count=0
@@ -114,13 +110,13 @@ for dotfile_path in "${dotfiles[@]}"; do
     source_file="$HOME/$dotfile_path"
     # Destination in dotfiles directory (with nested structure)
     dest_file="$DOTFILES_DIR/$dotfile_path"
-    
+
     # Check if source file exists
     if [ ! -f "$source_file" ]; then
         print_warning "Source file not found: $source_file (skipping)"
         continue
     fi
-    
+
     # Create destination directory if needed
     dest_dir="$(dirname "$dest_file")"
     if [ "$dest_dir" != "$DOTFILES_DIR" ] && [ ! -d "$dest_dir" ]; then
@@ -130,14 +126,14 @@ for dotfile_path in "${dotfiles[@]}"; do
             continue
         fi
     fi
-    
+
     # Check if destination already exists
     if [ -f "$dest_file" ]; then
         # Compare files to see if they're different
         if ! cmp -s "$source_file" "$dest_file"; then
             # Files are different, update it
             if cp "$source_file" "$dest_file" 2>/dev/null; then
-                print_success "↻ Updated: $dotfile_path"
+                print_updated "$dotfile_path"
                 updated_files+=("$dotfile_path")
                 ((updated_count++))
                 ((backed_up_count++))
@@ -146,13 +142,13 @@ for dotfile_path in "${dotfiles[@]}"; do
                 ((failed_count++))
             fi
         else
-            print_info "○ Unchanged: $dotfile_path"
+            print_unchanged "$dotfile_path"
             ((backed_up_count++))
         fi
     else
         # File doesn't exist, create it
         if cp "$source_file" "$dest_file" 2>/dev/null; then
-            print_success "✓ Created: $dotfile_path"
+            print_created "$dotfile_path"
             updated_files+=("$dotfile_path")
             ((backed_up_count++))
         else
@@ -163,18 +159,10 @@ for dotfile_path in "${dotfiles[@]}"; do
 done
 
 echo ""
-if [ ${#updated_files[@]} -gt 0 ]; then
-    print_info "Files updated in $DOTFILES_DIR:"
-    for file in "${updated_files[@]}"; do
-        echo -e "  ${CYAN}  • $file${NC}"
-    done
-    echo ""
-fi
-
 if [ $backed_up_count -gt 0 ]; then
-    print_success "Successfully backed up $backed_up_count dotfile(s)"
+    echo -e "${GREEN}${BOLD}✓${NC} Successfully backed up $backed_up_count dotfile(s)"
     if [ $updated_count -gt 0 ]; then
-        print_info "  ($updated_count file(s) were updated)"
+        echo "  ($updated_count updated)"
     fi
 fi
 if [ $failed_count -gt 0 ]; then
@@ -185,4 +173,3 @@ fi
 if [ $backed_up_count -eq 0 ] && [ $failed_count -eq 0 ]; then
     print_warning "No dotfiles found to backup"
 fi
-

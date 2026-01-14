@@ -11,15 +11,14 @@
         "hide_hidden": false,
         "dock": "right"
     },
-    "assistant": {
-        "version": "2",
+    "agent": {
         "dock": "left"
     },
     "tab_size": 4,
     "ui_font_family": ".ZedSans",
     "buffer_line_height": "comfortable",
     "buffer_font_family": ".ZedMono",
-    "theme": "Catppuccin Latte",
+    "theme": "Catppuccin Latte - No Italics",
     "vim_mode": true,
     "ui_font_size": 16.0,
     "buffer_font_size": 13.0,

@@ -19,29 +19,17 @@ SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 BIN_DIR="$HOME/.custom/scripts/bin"
 CONFIG_FILE="$PROJECT_ROOT/config.yml"
 
-# Function for rich printing
-print_success() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${GREEN}${BOLD}$1${NC}"
-    fi
-}
-
-print_info() {
-    if command -v lolcat &> /dev/null; then
-        echo -e "$1" | lolcat
-    else
-        echo -e "${CYAN}${BOLD}$1${NC}"
-    fi
+# Function for clean CLI output
+print_installed() {
+    echo -e "  ${GREEN}${BOLD}Installed${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}${BOLD}ERROR: $1${NC}" >&2
+    echo -e "${RED}${BOLD}ERROR:${NC} $1" >&2
 }
 
 print_warning() {
-    echo -e "${YELLOW}${BOLD}WARNING: $1${NC}"
+    echo -e "${YELLOW}${BOLD}WARNING:${NC} $1"
 }
 
 # Check uname from config.yml against system uname
@@ -66,7 +54,7 @@ mkdir -p "$BIN_DIR" || {
     exit 1
 }
 
-print_info "Installing scripts from $SCRIPTS_DIR to $BIN_DIR"
+echo "Installing scripts from $SCRIPTS_DIR to $BIN_DIR"
 echo ""
 
 installed_count=0
@@ -78,19 +66,19 @@ while IFS= read -r -d '' script_file; do
     fn="$(basename "$script_file")"
     # Remove .sh extension
     binfn="${fn%.sh}"
-    
+
     if [ -z "$binfn" ]; then
         print_warning "Skipping file with no name: $script_file"
         continue
     fi
-    
+
     distbinfp="$BIN_DIR/$binfn"
-    
+
     # Copy the script
     if cp "$script_file" "$distbinfp" 2>/dev/null; then
         # Make it executable
         if chmod +x "$distbinfp" 2>/dev/null; then
-            print_success "✓ Installed: $fn → $binfn"
+            print_installed "$fn → $binfn"
             ((installed_count++))
         else
             print_error "Failed to make $distbinfp executable"
@@ -104,7 +92,7 @@ done < <(find "$SCRIPTS_DIR" -maxdepth 1 -type f -name "*.sh" -print0)
 
 echo ""
 if [ $installed_count -gt 0 ]; then
-    print_success "Successfully installed $installed_count script(s)"
+    echo -e "${GREEN}${BOLD}✓${NC} Successfully installed $installed_count script(s)"
 fi
 if [ $failed_count -gt 0 ]; then
     print_error "Failed to install $failed_count script(s)"
@@ -114,4 +102,3 @@ fi
 if [ $installed_count -eq 0 ] && [ $failed_count -eq 0 ]; then
     print_warning "No .sh files found in $SCRIPTS_DIR"
 fi
-
