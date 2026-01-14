@@ -162,5 +162,32 @@
         "bindings": {
             "ctrl-k": "assistant::InlineAssist"
         }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            // "Nudge" the dock wider with Right Arrow
+            "ctrl-alt-]": [
+                "workspace::IncreaseActiveDockSize",
+                {
+                    "px": 100
+                }
+            ],
+            // "Nudge" the dock thinner with Left Arrow
+            "ctrl-alt-[": [
+                "workspace::DecreaseActiveDockSize",
+                {
+                    "px": 100
+                }
+            ],
+            // // Reset to the default "Thin" size with Down Arrow
+            // "ctrl-alt-\\": "workspace::ResetActiveDockSize"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-/": "agent::ToggleFocus"
+        }
     }
 ]
