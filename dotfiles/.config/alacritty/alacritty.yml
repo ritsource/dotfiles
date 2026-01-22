@@ -125,3 +125,11 @@ colors:
         white:   '0xdddddd'
 
 
+# cursor:
+#     # When true, the cursor will be rendered as a hollow box 
+#     # when the window is not focused.
+#     unfocused_hollow: true
+    
+#     # To ensure it blinks (making it even more obvious it's active)
+#     style:
+#         blinking: Always

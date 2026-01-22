@@ -7,18 +7,23 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+    "icon_theme": "VSCode Great Icons Theme",
     "project_panel": {
         "hide_hidden": false,
         "dock": "right"
     },
     "agent": {
+        "inline_assistant_model": {
+            "provider": "zed.dev",
+            "model": "claude-sonnet-4-5"
+        },
         "dock": "left"
     },
     "tab_size": 4,
     "ui_font_family": ".ZedSans",
     "buffer_line_height": "comfortable",
     "buffer_font_family": ".ZedMono",
-    "theme": "Catppuccin Latte - No Italics",
+    "theme": "Ayu Mirage",
     "vim_mode": true,
     "ui_font_size": 16.0,
     "buffer_font_size": 13.0,
@@ -52,4 +57,57 @@
             }
         }
     },
+    "terminal": {
+        "dock": "left"
+    },
+    "active_pane_modifiers": {
+        // "border_size": 0.0,
+        "inactive_opacity": 0.7
+    },
+    "diagnostics": {
+        "inline": {
+            "enabled": true
+        }
+    },
+    "experimental.theme_overrides": {
+        "error": "#FF0000", // Changes the underline color
+        "error.border": "#FF0000" // Changes the border color of the error popup
+    },
+    "unnecessary_code_fade": 0.1,
+    "theme_overrides": {
+        "Catppuccin Latte": {
+            "background": "#EBF4DD",
+            "editor.background": "#EBF4DD",
+            "editor.gutter.background": "#EBF4DD",
+            "terminal.background": "#EBF4DD",
+            "tab_bar.background": "#EBF4DD",
+            "tab.active_background": "#EBF4DD",
+            "tab.inactive_background": "#EBF4DD",
+            "status_bar.background": "#EBF4DD",
+            "title_bar.background": "#EBF4DD",
+            "toolbar.background": "#EBF4DD",
+            "panel.background": "#EBF4DD",
+            "elevated_surface.background": "#EBF4DD",
+            "scrollbar.track.background": "#EBF4DD"
+        },
+        "Ayu Mirage": {
+            "background": "#232323",
+            "editor.background": "#232323",
+            "editor.gutter.background": "#232323",
+            "terminal.background": "#232323",
+            "tab_bar.background": "#232323",
+            "tab.active_background": "#232323",
+            "tab.inactive_background": "#232323",
+            "status_bar.background": "#232323",
+            "title_bar.background": "#232323",
+            "toolbar.background": "#232323",
+            "panel.background": "#232323",
+            "elevated_surface.background": "#232323",
+            "scrollbar.track.background": "#232323"
+        }
+    },
+    "centered_layout": {
+        "left_padding": 0.4,
+        "right_padding": 0.4,
+    }
 }

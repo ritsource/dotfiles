@@ -2,111 +2,92 @@
     {
         "context": "Editor",
         "bindings": {
-            "ctrl-cmd-f": "editor::Format"
-        }
-    },
-    {
-        "bindings": {
-            "cmd-b": "project_panel::ToggleHideHidden"
-        }
-    },
-    {
-        "context": "Workspace",
-        "bindings": {
-            "cmd-shift-r": "workspace::ToggleRightDock"
-        }
-    },
-    {
-        "context": "Workspace",
-        "bindings": {
-            "cmd-shift-e": "workspace::ToggleLeftDock"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-0": "editor::FoldAll"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-f": "editor::ToggleFold"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-1": "editor::FoldAtLevel_1"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-2": "editor::FoldAtLevel_2"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-3": "editor::FoldAtLevel_3"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-4": "editor::FoldAtLevel_4"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-5": "editor::FoldAtLevel_5"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-6": "editor::FoldAtLevel_6"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-7": "editor::FoldAtLevel_7"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-8": "editor::FoldAtLevel_8"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-f ctrl-9": "editor::FoldAtLevel_9"
-        }
-    },
-    {
-        "context": "Editor",
-        "bindings": {
+            "ctrl-f ctrl-f": "editor::Format",
+            "ctrl-f ctrl-0": "editor::FoldAll",
+            "ctrl-f ctrl-f": "editor::ToggleFold",
+            "ctrl-f ctrl-1": "editor::FoldAtLevel_1",
+            "ctrl-f ctrl-2": "editor::FoldAtLevel_2",
+            "ctrl-f ctrl-3": "editor::FoldAtLevel_3",
+            "ctrl-f ctrl-4": "editor::FoldAtLevel_4",
+            "ctrl-f ctrl-5": "editor::FoldAtLevel_5",
+            "ctrl-f ctrl-6": "editor::FoldAtLevel_6",
+            "ctrl-f ctrl-7": "editor::FoldAtLevel_7",
+            "ctrl-f ctrl-8": "editor::FoldAtLevel_8",
+            "ctrl-f ctrl-9": "editor::FoldAtLevel_9",
             "ctrl-f ctrl-u": "editor::UnfoldAll"
         }
     },
     {
+        "context": "Workspace",
         "bindings": {
-            "cmd-shift-c cmd-shift-b": "collab_panel::ToggleFocus"
+            "cmd-shift-r": "workspace::ToggleRightDock",
+            "cmd-shift-e": "workspace::ToggleLeftDock",
+            // "Nudge" the dock wider with Right Arrow
+            "ctrl-alt-]": [
+                "workspace::IncreaseActiveDockSize",
+                {
+                    "px": 250
+                }
+            ],
+            // "Nudge" the dock thinner with Left Arrow
+            "ctrl-alt-[": [
+                "workspace::DecreaseActiveDockSize",
+                {
+                    "px": 250
+                }
+            ],
+            // // Reset to the default "Thin" size with Down Arrow
+            // "ctrl-alt-\\": "workspace::ResetActiveDockSize"
+            "ctrl-/": "agent::ToggleFocus",
+            "cmd-s": "workspace::SaveWithoutFormat",
+            "cmd-shift-s": "workspace::Save",
+            "ctrl-cmd-s": "workspace::SaveAs"
+        }
+    },
+    // {
+    //     "context": "Editor",
+    //     "bindings": {
+    //         "ctrl-alt-]": [
+    //             "pane::AdjustFlex",
+    //             {
+    //                 "amount": 0.05,
+    //                 "axis": "horizontal"
+    //             }
+    //         ],
+    //         "ctrl-alt-[": [
+    //             "pane::AdjustFlex",
+    //             {
+    //                 "amount": -0.05,
+    //                 "axis": "horizontal"
+    //             }
+    //         ]
+    //     }
+    // },
+    {
+        "context": "Pane && !Terminal",
+        "bindings": {
+            "ctrl-t h": "workspace::ActivatePaneLeft",
+            "ctrl-t l": "workspace::ActivatePaneRight",
+            "ctrl-t k": "workspace::ActivatePaneUp",
+            "ctrl-t j": "workspace::ActivatePaneDown",
+            "ctrl-t ctrl-h": "workspace::ActivatePaneLeft",
+            "ctrl-t ctrl-l": "workspace::ActivatePaneRight",
+            "ctrl-t ctrl-k": "workspace::ActivatePaneUp",
+            "ctrl-t ctrl-j": "workspace::ActivatePaneDown"
         }
     },
     {
         "bindings": {
-            "cmd-shift-c": "project_panel::FoldDirectory"
-        }
-    },
-    {
-        "bindings": {
-            "cmd-shift-c cmd-shift-u": "project_panel::UnfoldDirectory"
+            "cmd-b": "project_panel::ToggleHideHidden",
+            "cmd-shift-c cmd-shift-b": "collab_panel::ToggleFocus",
+            "cmd-shift-c": "project_panel::FoldDirectory",
+            "cmd-shift-c cmd-shift-u": "project_panel::UnfoldDirectory",
+            "ctrl-j ctrl-j": "debugger::StepOver",
+            "ctrl-o ctrl-o": "debugger::StepOut",
+            "ctrl-b ctrl-b": "debugger::StepBack",
+            "ctrl-r ctrl-r": "debugger::Restart",
+            "ctrl-d ctrl-e": "debugger::Stop",
+            "ctrl-d ctrl-d": "debugger::Detach"
         }
     },
     {
@@ -116,39 +97,9 @@
         }
     },
     {
-        "bindings": {
-            "ctrl-j ctrl-j": "debugger::StepOver"
-        }
-    },
-    {
-        "bindings": {
-            "ctrl-o ctrl-o": "debugger::StepOut"
-        }
-    },
-    {
-        "bindings": {
-            "ctrl-b ctrl-b": "debugger::StepBack"
-        }
-    },
-    {
         "context": "(Workspace && debugger_stopped)",
         "bindings": {
             "ctrl-c ctrl-c": "debugger::Continue"
-        }
-    },
-    {
-        "bindings": {
-            "ctrl-r ctrl-r": "debugger::Restart"
-        }
-    },
-    {
-        "bindings": {
-            "ctrl-d ctrl-e": "debugger::Stop"
-        }
-    },
-    {
-        "bindings": {
-            "ctrl-d ctrl-d": "debugger::Detach"
         }
     },
     {
@@ -164,30 +115,98 @@
         }
     },
     {
-        "context": "Workspace",
         "bindings": {
-            // "Nudge" the dock wider with Right Arrow
-            "ctrl-alt-]": [
-                "workspace::IncreaseActiveDockSize",
-                {
-                    "px": 100
-                }
-            ],
-            // "Nudge" the dock thinner with Left Arrow
-            "ctrl-alt-[": [
-                "workspace::DecreaseActiveDockSize",
-                {
-                    "px": 100
-                }
-            ],
-            // // Reset to the default "Thin" size with Down Arrow
-            // "ctrl-alt-\\": "workspace::ResetActiveDockSize"
+            "cmd-t": "terminal_panel::ToggleFocus"
         }
     },
     {
         "context": "Workspace",
         "bindings": {
-            "ctrl-/": "agent::ToggleFocus"
+            "cmd-shift-t": "terminal_panel::Toggle"
+        }
+    },
+    {
+        "context": "(Editor && edit_prediction)",
+        "bindings": {
+            "tab": "editor::AcceptEditPrediction"
+        }
+    },
+    {
+        "context": "InlineAssistEditor",
+        "bindings": {
+            "ctrl-enter": "menu::Confirm",
+            "cmd-enter": "menu::Confirm"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-f ctrl-m": "editor::Format"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-cmd-f": "editor::Format"
+        }
+    },
+    {
+        "context": "VimControl && !menu",
+        "bindings": {
+            "ctrl-e": [
+                "editor::MoveDownByLines",
+                {
+                    "lines": 5
+                }
+            ],
+            "ctrl-y": [
+                "editor::MoveUpByLines",
+                {
+                    "lines": 5
+                }
+            ]
+        }
+    },
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "cmd-shift-c": "project_panel::CollapseAllEntries"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-m": "workspace::ToggleZoom"
+        }
+    },
+    {
+        "context": "InlineAssistant > Editor",
+        "bindings": {
+            "cmd-enter": "inline_assistant::ThumbsUpResult"
+        }
+    },
+    {
+        "context": "InlineAssistant > Editor",
+        "bindings": {
+            "ctrl-enter": "inline_assistant::ThumbsUpResult"
+        }
+    },
+    {
+        "context": "InlineAssistant > Editor",
+        "bindings": {
+            "ctrl-y": "inline_assistant::ThumbsUpResult"
+        }
+    },
+    {
+        "context": "InlineAssistant > Editor",
+        "bindings": {
+            "cmd-escape": "inline_assistant::ThumbsDownResult"
+        }
+    },
+    {
+        "context": "InlineAssistant > Editor",
+        "bindings": {
+            "ctrl-n": "inline_assistant::ThumbsDownResult"
         }
     }
 ]
