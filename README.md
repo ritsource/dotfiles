@@ -8,8 +8,6 @@ This repository provides a set of tools to:
 
 - **Install** your dotfiles and scripts to your home directory
 - **Backup** your current dotfiles and scripts back to the repository
-- **Sync** configurations across different machines
-- **Manage** custom shell scripts in a centralized location
 
 ## Project Structure
 
