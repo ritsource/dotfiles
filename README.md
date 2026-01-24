@@ -260,4 +260,4 @@ Contributions are welcome! 🎉
 
 ## Credit
 
-This project is originally inspired by [adotg/.dotfiles](https://github.com/adotg/.dotfiles).
+This project is originally inspired by [adotg/.dotfiles](https://github.com/adotg/.dotfiles), and [notAxion/dotfiles](https://github.com/notAxion/dotfiles)
