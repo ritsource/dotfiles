@@ -208,5 +208,43 @@
         "bindings": {
             "ctrl-n": "inline_assistant::ThumbsDownResult"
         }
+    },
+    {
+        "context": "ProjectSearchBar",
+        "bindings": {
+            "cmd-shift-r": "search::ToggleReplace"
+        }
+    },
+    {
+        "context": "ProjectSearchView",
+        "bindings": {
+            "cmd-shift-r": "search::ToggleReplace"
+        }
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "cmd-shift-r": "search::ToggleReplace"
+        }
+    },
+    {
+        "context": "BufferSearchBar",
+        "bindings": {
+            "cmd-shift-r": "search::ToggleReplace"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "tab": "editor::Indent",
+            "shift-tab": "editor::Outdent"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == visual",
+        "bindings": {
+            "tab": "editor::Indent",
+            "shift-tab": "editor::Outdent"
+        }
     }
 ]
