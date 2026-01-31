@@ -26,14 +26,14 @@
             "ctrl-alt-]": [
                 "workspace::IncreaseActiveDockSize",
                 {
-                    "px": 250
+                    "px": 100
                 }
             ],
             // "Nudge" the dock thinner with Left Arrow
             "ctrl-alt-[": [
                 "workspace::DecreaseActiveDockSize",
                 {
-                    "px": 250
+                    "px": 100
                 }
             ],
             // // Reset to the default "Thin" size with Down Arrow
@@ -180,36 +180,6 @@
         }
     },
     {
-        "context": "InlineAssistant > Editor",
-        "bindings": {
-            "cmd-enter": "inline_assistant::ThumbsUpResult"
-        }
-    },
-    {
-        "context": "InlineAssistant > Editor",
-        "bindings": {
-            "ctrl-enter": "inline_assistant::ThumbsUpResult"
-        }
-    },
-    {
-        "context": "InlineAssistant > Editor",
-        "bindings": {
-            "ctrl-y": "inline_assistant::ThumbsUpResult"
-        }
-    },
-    {
-        "context": "InlineAssistant > Editor",
-        "bindings": {
-            "cmd-escape": "inline_assistant::ThumbsDownResult"
-        }
-    },
-    {
-        "context": "InlineAssistant > Editor",
-        "bindings": {
-            "ctrl-n": "inline_assistant::ThumbsDownResult"
-        }
-    },
-    {
         "context": "ProjectSearchBar",
         "bindings": {
             "cmd-shift-r": "search::ToggleReplace"
@@ -245,6 +215,52 @@
         "bindings": {
             "tab": "editor::Indent",
             "shift-tab": "editor::Outdent"
+        }
+    },
+    {
+        "context": "ContextEditor > Editor",
+        "bindings": {
+            "cmd-enter": "assistant::ConfirmCommand"
+        }
+    },
+    {
+        "context": "ContextEditor > Editor",
+        "bindings": {
+            "ctrl-enter": "assistant::ConfirmCommand"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            // --- NORMAL MODE (Keep this, as you confirmed it works) ---
+            // 1. Alias the internal Delete operator to a hidden key
+            "ctrl-shift-d": [
+                "vim::PushOperator",
+                "Delete"
+            ],
+            // 2. Map 'dd' to use black hole register + hidden delete operator + current line
+            "d d": [
+                "workspace::SendKeystrokes",
+                "\" _ ctrl-shift-d d"
+            ],
+            // 3. Map 'D' to use black hole register + hidden delete operator + end of line
+            "shift-d": [
+                "workspace::SendKeystrokes",
+                "\" _ ctrl-shift-d shift-4"
+            ]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == visual",
+        "bindings": {
+            // --- VISUAL MODE FIX ---
+            // We map 'd' to send the keystrokes: " _ x
+            // 1. " _  -> Select Black Hole Register
+            // 2. x    -> Trigger standard Cut (which performs the deletion)
+            "d": [
+                "workspace::SendKeystrokes",
+                "\" _ x"
+            ]
         }
     }
 ]
