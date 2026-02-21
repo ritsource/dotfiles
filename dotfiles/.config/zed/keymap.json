@@ -26,14 +26,14 @@
             "ctrl-alt-]": [
                 "workspace::IncreaseActiveDockSize",
                 {
-                    "px": 100
+                    "px": 300
                 }
             ],
             // "Nudge" the dock thinner with Left Arrow
             "ctrl-alt-[": [
                 "workspace::DecreaseActiveDockSize",
                 {
-                    "px": 100
+                    "px": 300
                 }
             ],
             // // Reset to the default "Thin" size with Down Arrow
@@ -261,6 +261,23 @@
                 "workspace::SendKeystrokes",
                 "\" _ x"
             ]
+        }
+    },
+    {
+        // Apply to both Standard Visual AND Visual Line modes
+        "context": "Editor && (vim_mode == visual || vim_mode == visual_line)",
+        "bindings": {
+            "p": [
+                "vim::PushKeys",
+                "\"_dP"
+            ]
+        }
+    },
+    {
+        "context": "Editor && (showing_code_actions || showing_completions)",
+        "bindings": {
+            "ctrl-j": "editor::ContextMenuNext",
+            "ctrl-k": "editor::ContextMenuPrevious"
         }
     }
 ]

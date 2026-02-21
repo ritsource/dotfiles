@@ -215,6 +215,3 @@ export PATH="/Users/rit/.codeium/windsurf/bin:$PATH"
 # opencode
 export PATH=/Users/rit/.opencode/bin:$PATH
 
-
-
-alias yarn="pnpm"

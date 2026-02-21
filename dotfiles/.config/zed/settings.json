@@ -25,37 +25,63 @@
     "ui_font_family": ".ZedSans",
     "buffer_line_height": "comfortable",
     "buffer_font_family": ".ZedMono",
-    "theme": "Ayu Mirage",
+    "theme": "Catppuccin Latte",
     "vim_mode": true,
     "ui_font_size": 16.0,
     "buffer_font_size": 13.0,
     "autosave": "off",
     "confirm_quit": true,
-    "copilot": {
-        "disabled_globs": [
-            ".env"
-        ]
-    },
     "cursor_blink": true,
     "formatter": "language_server",
     "languages": {
-        "JavaScript": {
-            "external": {
-                "command": "prettier",
-                "arguments": [
-                    "--stdin-filepath",
-                    "{buffer_path}"
-                ]
-            }
-        },
         "TypeScript": {
             "code_actions_on_format": {
                 "source.organizeImports": true
+            },
+            "formatter": {
+                "external": {
+                    "command": "prettier",
+                    "arguments": [
+                        "--stdin-filepath",
+                        "{buffer_path}"
+                    ]
+                }
+            }
+        },
+        "JavaScript": {
+            "formatter": {
+                "external": {
+                    "command": "prettier",
+                    "arguments": [
+                        "--stdin-filepath",
+                        "{buffer_path}"
+                    ]
+                }
             }
         },
         "TSX": {
             "code_actions_on_format": {
                 "source.organizeImports": true
+            }
+        },
+        "Python": {
+            "language_servers": [
+                "pyright",
+                "ruff",
+                "!basedpyright",
+                "!pylsp"
+            ],
+            "format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "ruff",
+                    "arguments": [
+                        "format",
+                        "--stdin-filename",
+                        "{buffer_path}",
+                        "-"
+                    ]
+                }
             }
         }
     },
@@ -64,7 +90,7 @@
     },
     "active_pane_modifiers": {
         // "border_size": 0.0,
-        "inactive_opacity": 0.7
+        // "inactive_opacity": 0.8
     },
     "diagnostics": {
         "inline": {
@@ -80,19 +106,19 @@
     "theme_overrides": {
         "Catppuccin Latte": {
             "background.appearance": "blurred",
-            "background": "#f0f0e4",
-            "editor.background": "#f0f0e4",
-            "editor.gutter.background": "#f0f0e4",
-            "terminal.background": "#f0f0e4",
-            "tab_bar.background": "#f0f0e4",
-            "tab.active_background": "#f0f0e4",
-            "tab.inactive_background": "#f0f0e4",
-            "status_bar.background": "#f0f0e4",
-            "title_bar.background": "#f0f0e4",
-            "toolbar.background": "#f0f0e4",
-            "panel.background": "#f0f0e4",
-            "elevated_surface.background": "#f0f0e4",
-            "scrollbar.track.background": "#f0f0e4"
+            "background": "#f2eeeb",
+            "editor.background": "#f2eeeb",
+            "editor.gutter.background": "#f2eeeb",
+            "terminal.background": "#f2eeeb",
+            "tab_bar.background": "#f2eeeb",
+            "tab.active_background": "#f2eeeb",
+            "tab.inactive_background": "#f2eeeb",
+            "status_bar.background": "#f2eeeb",
+            "title_bar.background": "#f2eeeb",
+            "toolbar.background": "#f2eeeb",
+            "panel.background": "#f2eeeb",
+            "elevated_surface.background": "#f2eeeb",
+            "scrollbar.track.background": "#f2eeeb"
         },
         "Ayu Mirage": {
             // "background.appearance": "blurred",
