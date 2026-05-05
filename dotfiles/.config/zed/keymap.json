@@ -26,14 +26,14 @@
             "ctrl-alt-]": [
                 "workspace::IncreaseActiveDockSize",
                 {
-                    "px": 300
+                    "px": 200
                 }
             ],
             // "Nudge" the dock thinner with Left Arrow
             "ctrl-alt-[": [
                 "workspace::DecreaseActiveDockSize",
                 {
-                    "px": 300
+                    "px": 200
                 }
             ],
             // // Reset to the default "Thin" size with Down Arrow
@@ -234,10 +234,7 @@
         "bindings": {
             // --- NORMAL MODE (Keep this, as you confirmed it works) ---
             // 1. Alias the internal Delete operator to a hidden key
-            "ctrl-shift-d": [
-                "vim::PushOperator",
-                "Delete"
-            ],
+            "ctrl-shift-d": "vim::PushDelete",
             // 2. Map 'dd' to use black hole register + hidden delete operator + current line
             "d d": [
                 "workspace::SendKeystrokes",
@@ -263,16 +260,16 @@
             ]
         }
     },
-    {
-        // Apply to both Standard Visual AND Visual Line modes
-        "context": "Editor && (vim_mode == visual || vim_mode == visual_line)",
-        "bindings": {
-            "p": [
-                "vim::PushKeys",
-                "\"_dP"
-            ]
-        }
-    },
+    // {
+    //     // Apply to both Standard Visual AND Visual Line modes
+    //     "context": "Editor && (vim_mode == visual || vim_mode == visual_line)",
+    //     "bindings": {
+    //         "p": [
+    //             "vim::PushKeys",
+    //             "\"_dP"
+    //         ]
+    //     }
+    // },
     {
         "context": "Editor && (showing_code_actions || showing_completions)",
         "bindings": {

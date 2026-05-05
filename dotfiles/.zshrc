@@ -97,6 +97,8 @@ alias z..="zed .."
 alias z....="zed ../.."
 
 alias cl="claude"
+alias cx="codex"
+
 
 # useful aliases
 #
@@ -148,6 +150,10 @@ alias gitb="git branch"
 alias gitck="git checkout"
 alias gitbclip="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
 alias gitpo="git push origin"
+
+
+# alias gitc="git cpast"
+
 #
 
 # alias for custom scripts
@@ -215,3 +221,13 @@ export PATH="/Users/rit/.codeium/windsurf/bin:$PATH"
 # opencode
 export PATH=/Users/rit/.opencode/bin:$PATH
 
+
+# bun completions
+[ -s "/Users/rit/.bun/_bun" ] && source "/Users/rit/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/rit/.antigravity/antigravity/bin:$PATH"

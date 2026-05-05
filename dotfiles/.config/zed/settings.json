@@ -7,15 +7,30 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-    "icon_theme": "VSCode Great Icons Theme",
+    "cli_default_open_behavior": "new_window",
+    "outline_panel": {
+        "dock": "left"
+    },
+    "collaboration_panel": {
+        "dock": "left"
+    },
+    "git_panel": {
+        "dock": "left"
+    },
+    "icon_theme": {
+        "mode": "dark",
+        "light": "VSCode Great Icons Theme",
+        "dark": "VSCode Great Icons Theme"
+    },
     "project_panel": {
+        "hide_gitignore": false,
         "hide_hidden": false,
         "dock": "right"
     },
     "agent": {
         "inline_assistant_model": {
             "provider": "zed.dev",
-            "model": "claude-sonnet-4-5"
+            "model": "claude-sonnet-4-6"
             // "provider": "anthropic",
             // "model": "claude-3-5-sonnet-latest"
         },
@@ -25,7 +40,11 @@
     "ui_font_family": ".ZedSans",
     "buffer_line_height": "comfortable",
     "buffer_font_family": ".ZedMono",
-    "theme": "Catppuccin Latte",
+    "theme": {
+        "mode": "dark",
+        "light": "Catppuccin Latte",
+        "dark": "Ayu Mirage"
+    },
     "vim_mode": true,
     "ui_font_size": 16.0,
     "buffer_font_size": 13.0,
@@ -106,19 +125,19 @@
     "theme_overrides": {
         "Catppuccin Latte": {
             "background.appearance": "blurred",
-            "background": "#f2eeeb",
-            "editor.background": "#f2eeeb",
-            "editor.gutter.background": "#f2eeeb",
-            "terminal.background": "#f2eeeb",
-            "tab_bar.background": "#f2eeeb",
-            "tab.active_background": "#f2eeeb",
-            "tab.inactive_background": "#f2eeeb",
-            "status_bar.background": "#f2eeeb",
-            "title_bar.background": "#f2eeeb",
-            "toolbar.background": "#f2eeeb",
-            "panel.background": "#f2eeeb",
-            "elevated_surface.background": "#f2eeeb",
-            "scrollbar.track.background": "#f2eeeb"
+            "background": "#f7efcd",
+            "editor.background": "#f7efcd",
+            "editor.gutter.background": "#f7efcd",
+            "terminal.background": "#f7efcd",
+            "tab_bar.background": "#f7efcd",
+            "tab.active_background": "#f7efcd",
+            "tab.inactive_background": "#f7efcd",
+            "status_bar.background": "#f7efcd",
+            "title_bar.background": "#f7efcd",
+            "toolbar.background": "#f7efcd",
+            "panel.background": "#f7efcd",
+            "elevated_surface.background": "#f7efcd",
+            "scrollbar.track.background": "#f7efcd",
         },
         "Ayu Mirage": {
             // "background.appearance": "blurred",
@@ -262,5 +281,8 @@
     "sticky_scroll": {
         "enabled": true
     },
-    "show_edit_predictions": true
+    "show_edit_predictions": true,
+    "file_finder": {
+        
+    }
 }
